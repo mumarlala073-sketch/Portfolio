@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your Name — Portfolio</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #0b1020; /* dark background */
+        --card: #0f1724;
+        --muted: #97a0b3;
+        --accent1: #6c63ff; /* primary accent */
+        --accent2: #9b7bff; /* secondary */
+        --glass: rgba(255, 255, 255, 0.03);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial;
+        background: var(--bg);
+        color: #e6eef8;
+      }
+      a {
+        color: inherit;
+      }
+      .navbar {
+        background: transparent;
+      }
+      .brand {
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+      .accent {
+        background: linear-gradient(90deg, var(--accent1), var(--accent2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .hero {
+        min-height: 78vh;
+        display: grid;
+        place-items: center;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      .hero-card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        border-radius: 18px;
+        padding: 2rem;
+        box-shadow: 0 8px 40px rgba(8, 10, 20, 0.6);
+      }
+      .badge-soft {
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--muted);
+        padding: 0.35rem 0.6rem;
+        border-radius: 999px;
+        font-weight: 600;
+      }
+      .skill-pill {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 0.45rem 0.6rem;
+        border-radius: 999px;
+        margin: 0 0.25rem 0.5rem 0;
+        display: inline-block;
+      }
+      .project-card {
+        background: var(--card);
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+      }
+      .project-img {
+        height: 220px;
+        object-fit: cover;
+        width: 100%;
+        display: block;
+      }
+      .work-step {
+        background: var(--glass);
+        padding: 1rem;
+        border-radius: 12px;
+      }
+      .testimonial {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0.01)
+        );
+        padding: 1.2rem;
+        border-radius: 12px;
+      }
+      .client-logo {
+        filter: grayscale(100%) opacity(0.7);
+        max-height: 48px;
+      }
+      footer {
+        color: var(--muted);
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      .filter-btn.active {
+        background: var(--accent1);
+        border-color: var(--accent1);
+        color: white;
+      }
+      input,
+      textarea {
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        color: inherit;
+      }
+      .form-control:focus {
+        box-shadow: none;
+        border-color: var(--accent1);
+      }
+      @media (min-width: 992px) {
+        .hero {
+          min-height: 82vh;
+        }
+        .hero-left {
+          padding-right: 2rem;
+        }
+      }
+      .navbar {
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+      }
+      .navbar-brand {
+        font-weight: 800;
+        background: linear-gradient(90deg, #ffffff, #d4d4ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: 1.5rem;
+      }
+      .navbar .nav-link {
+        color: #fff !important;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+      .navbar .nav-link:hover {
+        color: #d1d5ff !important;
+      }
+      .hero {
+        min-height: 80vh;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(
+          180deg,
+          rgba(108, 99, 255, 0.06),
+          rgba(108, 99, 255, 0.02)
+        );
+      }
+      .display-name {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--text-dark);
+      }
+      .accent-text {
+        color: var(--accent);
+      }
+      .lead-muted {
+        color: var(--text-muted);
+      }
+      .section-title {
+        font-weight: 700;
+        font-size: 2rem;
+        color: var(--text-dark);
+        margin-bottom: 1.5rem;
+      }
+      .project-card,
+      .info-card,
+      .blog-card,
+      .testimonial-card {
+        border-radius: 16px;
+        /* background: #fff; */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        overflow: hidden;
+      }
+      .contact-card {
+        /* background: #fff; */
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 1.5rem;
+      }
+      footer {
+        /* background: #fff; */
+        border-top: 1px solid #e5e7eb;
+        padding: 2rem 0;
+        color: var(--text-muted);
+      }
+      .btn-accent {
+        background: var(--accent);
+        /* color: #fff; */
+        border: none;
+      }
+      .btn-accent:hover {
+        background: var(--accent2);
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav
+      class="navbar navbar-expand-lg py-3 shadow-sm"
+      data-aos="fade-down"
+      data-aos-duration="1000"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="#">M. Umar khan</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navmenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#experience">Experience</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#portfolio">Portfolio</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#blog">Blog</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#testimonials">Testimonials</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header id="home" class="hero">
+      <div class="container">
+        <div class="hero-card">
+          <div class="row align-items-center">
+            <div class="col-lg-6 hero-left">
+              <span
+                class="badge-soft"
+                data-aos="fade-left"
+                data-aos-duration="1000"
+                >Full‑Stack Developer • UI/UX Enthusiast</span
+              >
+              <h1 class="mt-3" data-aos="fade-left" data-aos-duration="2000">
+                Hi, I'm <span class="accent">Umar Khan</span><br /><small
+                  class="text-muted"
+                  style="color: var(--muted)"
+                  >I design and build beautiful web experiences.</small
+                >
+              </h1>
+              <p
+                class="lead"
+                style="color: var(--muted)"
+                data-aos="fade-right"
+                data-aos-offset="100"
+                data-aos-easing="ease-in-sine"
+              >
+                I convert Figma designs into high-quality, responsive websites
+                and web apps using modern technologies — Bootstrap, HTML, CSS,
+                JavaScript, and React when needed.
+              </p>
+              <div class="mt-3">
+                <a
+                  href="#portfolio"
+                  class="btn btn-lg"
+                  data-aos="fade-right"
+                  data-aos-offset="300"
+                  data-aos-easing="ease-in-sine"
+                  style="
+                    background: linear-gradient(
+                      90deg,
+                      var(--accent1),
+                      var(--accent2)
+                    );
+                    color: white;
+                    border: none;
+                  margin-bottom: 10px;
+                  "
+                  >See my work</a
+                >
+                <a
+                  href="#contact"
+                  class="btn btn-outline-light btn-lg ms-2"
+                  data-aos="fade-right"
+                  data-aos-offset="300"
+                  data-aos-easing="ease-in-sine"
+                  style="margin-bottom: 10px;"
+                  >Let's talk</a
+                >
+              </div>
+
+              <div
+                class="mt-4"
+                data-aos="zoom-in-right"
+                data-aos-duration="1000"
+              >
+                <div class="mb-2 small text-muted">Skills</div>
+                <div>
+                  <span class="skill-pill">Bootstrap</span>
+                  <span class="skill-pill">HTML</span>
+                  <span class="skill-pill">CSS</span>
+                  <span class="skill-pill">JavaScript</span>
+                  <span class="skill-pill">React</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 text-center mt-4 mt-lg-0">
+              <div style="max-width: 420px; margin: 0 auto">
+                <img
+                  src="./Assets/WhatsApp Image 2025-08-23 at 1.23.59 PM.jpeg"
+                  class="img-fluid rounded-4 shadow"
+                  alt="portrait"
+                  data-aos="fade-right"
+                  data-aos-duration="1000"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- WHAT I DO -->
+    <section id="about" class="py-5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h2 class="fw-bold">What I Do</h2>
+            <p style="color: var(--muted)">
+              I help businesses and individuals build pixel-perfect websites,
+              improve user experience, and ship features fast.
+            </p>
+            <div class="row mt-4 g-3">
+              <div class="col-md-6" data-aos="fade-down">
+                <div class="p-3 work-step">
+                  <h6 class="mb-1" data-aos="fade-down">UI/UX Design</h6>
+                  <p class="small" style="color: var(--muted)">
+                    Design-to-code workflows, Figma conversions and responsive
+                    interfaces.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6" data-aos="fade-down">
+                <div class="p-3 work-step">
+                  <h6 class="mb-1">Frontend Development</h6>
+                  <p class="small" style="color: var(--muted)">
+                    Bootstrap, component-driven pages and performance-optimised
+                    CSS.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6" data-aos="fade-down">
+                <div class="p-3 work-step">
+                  <h6 class="mb-1">Backend & APIs</h6>
+                  <p class="small" style="color: var(--muted)">
+                    Simple REST APIs, forms processing and deployment-ready
+                    code.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6" data-aos="fade-down">
+                <div class="p-3 work-step">
+                  <h6 class="mb-1">Optimization</h6>
+                  <p class="small" style="color: var(--muted)">
+                    Accessibility, SEO basics and fast loading techniques.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="col-lg-6 mt-4 mt-lg-0"
+            data-aos="fade-right"
+            data-aos-offset="200"
+            data-aos-easing="ease-in-sine"
+          >
+            <h5 class="mb-3" data-aos0="fade-down">Work Process</h5>
+            <div class="d-flex gap-3 flex-column">
+              <div class="d-flex gap-3 align-items-start">
+                <div
+                  class="badge-soft"
+                  style="min-width: 48px; text-align: center"
+                >
+                  1
+                </div>
+                <div>
+                  <strong>Discovery</strong>
+                  <div
+                    class="small"
+                    style="color: var(--muted)"
+                    data-aos="fade-down"
+                    data-aos-duration="2000"
+                  >
+                    Understand goals, audience and project scope.
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex gap-3 align-items-start">
+                <div
+                  class="badge-soft"
+                  style="min-width: 48px; text-align: center"
+                >
+                  2
+                </div>
+                <div>
+                  <strong>Design</strong>
+                  <div class="small" style="color: var(--muted)">
+                    Figma mockups and user flows shared for review.
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex gap-3 align-items-start">
+                <div
+                  class="badge-soft"
+                  style="min-width: 48px; text-align: center"
+                >
+                  3
+                </div>
+                <div>
+                  <strong>Develop</strong>
+                  <div class="small" style="color: var(--muted)">
+                    Pixel-perfect implementation with responsive breakpoints.
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex gap-3 align-items-start">
+                <div
+                  class="badge-soft"
+                  style="min-width: 48px; text-align: center"
+                >
+                  4
+                </div>
+                <div>
+                  <strong>Deliver</strong>
+                  <div class="small" style="color: var(--muted)">
+                    Staging, revisions and final handoff or deployment support.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4">
+              <a
+                href="#contact"
+                class="btn btn-lg"
+                style="
+                  background: linear-gradient(
+                    90deg,
+                    var(--accent1),
+                    var(--accent2)
+                  );
+                  color: white;
+                  border: none;
+                "
+                >Let's discuss your project</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section
+      id="experience"
+      class="py-5 bg-dark"
+      style="
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.01),
+          rgba(255, 255, 255, 0)
+        );
+      "
+    >
+      <div class="container">
+        <div
+          class="d-flex justify-content-between align-items-center mb-4"
+          data-aos="zoom-in"
+        >
+          <h2 class="fw-bold">Experience</h2>
+          <small class="text-muted" style="color: var(--muted)"
+            >Selected highlights</small
+          >
+        </div>
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="p-3 project-card">
+              <h5 class="mb-1" data-aos="zoom-in">
+                Frontend Developer — Company A
+              </h5>
+              <p
+                class="small mb-2"
+                style="color: var(--muted)"
+                data-aos="zoom-in"
+              >
+                2023 — Present
+              </p>
+              <p class="small" style="color: var(--muted)" data-aos="zoom-in">
+                Built responsive marketing sites, improved page speed and
+                maintained component library.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="p-3 project-card">
+              <h5 class="mb-1" data-aos="zoom-in">UI Designer — Freelance</h5>
+              <p
+                class="small mb-2"
+                style="color: var(--muted)"
+                data-aos="zoom-in"
+              >
+                2021 — 2023
+              </p>
+              <p class="small" style="color: var(--muted)" data-aos="zoom-in">
+                Delivered design systems and Figma-to-HTML conversions for
+                startups.
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="p-3 project-card">
+              <h5 class="mb-1" data-aos="zoom-in">Intern — Tech Studio</h5>
+              <p
+                class="small mb-2"
+                style="color: var(--muted)"
+                data-aos="zoom-in"
+              >
+                2020 — 2021
+              </p>
+              <p class="small" style="color: var(--muted)" data-aos="zoom-in">
+                Assisted in testing and component development for internal
+                projects.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="py-5">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2
+            class="fw-bold"
+            data-aos="fade-right"
+            data-aos-offset="300"
+            data-aos-easing="ease-in-sine"
+          >
+            Selected Projects
+          </h2>
+          <div>
+            <button
+              class="btn btn-sm btn-outline-light filter-btn active"
+              data-filter="all"
+            >
+              All
+            </button>
+            <button
+              class="btn btn-sm btn-outline-light filter-btn"
+              data-filter="web"
+            >
+              Web
+            </button>
+            <button
+              class="btn btn-sm btn-outline-light filter-btn"
+              data-filter="ui"
+            >
+              UI
+            </button>
+            <button
+              class="btn btn-sm btn-outline-light filter-btn"
+              data-filter="app"
+            >
+              App
+            </button>
+          </div>
+        </div>
+
+        <div class="row g-4" id="projectsGrid">
+          <!-- project item -->
+          <div class="col-md-6 col-lg-4 project-item" data-category="web">
+            <div class="project-card" data-aos="zoom-in-down">
+              <img
+                src="https://picsum.photos/seed/p1/800/450"
+                class="project-img"
+              />
+              <div class="p-3">
+                <h5>Marketing Site Redesign</h5>
+                <p class="small" style="color: var(--muted)">
+                  Bootstrap · Performance · Accessibility
+                </p>
+                <div class="mt-2">
+                  <a href="#" class="btn btn-sm btn-outline-light">View</a>
+                  <a href="#" class="btn btn-sm btn-outline-light ms-2">Code</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 project-item" data-category="ui">
+            <div class="project-card" data-aos="zoom-in-left">
+              <img
+                src="https://picsum.photos/seed/p2/800/450"
+                alt="project"
+                class="project-img"
+              />
+              <div class="p-3">
+                <h5>Design System</h5>
+                <p class="small" style="color: var(--muted)">
+                  Figma · Tokens · Documentation
+                </p>
+                <div class="mt-2">
+                  <a href="#" class="btn btn-sm btn-outline-light">View</a>
+                  <a href="#" class="btn btn-sm btn-outline-light ms-2">Code</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 project-item" data-category="app">
+            <div class="project-card" data-aos="zoom-out-up">
+              <img
+                src="https://picsum.photos/seed/p3/800/450"
+                alt="project"
+                class="project-img"
+              />
+              <div class="p-3">
+                <h5>Web App Dashboard</h5>
+                <p class="small" style="color: var(--muted)">
+                  React · Charts · Auth
+                </p>
+                <div class="mt-2">
+                  <a href="#" class="btn btn-sm btn-outline-light">View</a>
+                  <a href="#" class="btn btn-sm btn-outline-light ms-2">Code</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- more items (repeat) -->
+          <div class="col-md-6 col-lg-4 project-item" data-category="web">
+            <div class="project-card" data-aos="zoom-out-down">
+              <img
+                src="https://picsum.photos/seed/p4/800/450"
+                alt="project"
+                class="project-img"
+              />
+              <div class="p-3">
+                <h5>E‑commerce Landing</h5>
+                <p class="small" style="color: var(--muted)">
+                  Shopify · Optimisation
+                </p>
+                <div class="mt-2">
+                  <a href="#" class="btn btn-sm btn-outline-light">View</a>
+                  <a href="#" class="btn btn-sm btn-outline-light ms-2">Code</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 project-item" data-category="ui">
+            <div class="project-card"  data-aos="zoom-in-left">
+              <img
+                src="https://picsum.photos/seed/p5/800/450"
+                alt="project"
+                class="project-img"
+              />
+              <div class="p-3">
+                <h5>Landing Concept</h5>
+                <p class="small" style="color: var(--muted)">
+                  Figma concept and prototype
+                </p>
+                <div class="mt-2">
+                  <a href="#" class="btn btn-sm btn-outline-light">View</a>
+                  <a href="#" class="btn btn-sm btn-outline-light ms-2">Code</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 project-item" data-category="app">
+            <div class="project-card" data-aos="zoom-out-down">
+              <img
+                src="https://picsum.photos/seed/p6/800/450"
+                alt="project"
+                class="project-img"
+              />
+              <div class="p-3">
+                <h5>Mobile App UI</h5>
+                <p class="small" style="color: var(--muted)">
+                  Figma · Prototyping
+                </p>
+                <div class="mt-2">
+                  <a href="#" class="btn btn-sm btn-outline-light">View</a>
+                  <a href="#" class="btn btn-sm btn-outline-light ms-2">Code</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section
+      id="blog"
+      class="py-5 bg-dark"
+      style="border-top: 1px solid rgba(255, 255, 255, 0.02)"
+    >
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="fw-bold"data-aos="zoom-out-right">Recent Posts</h2>
+          <a
+            href="#"
+            class="small text-decoration-none"
+            style="color: var(--muted)"
+            data-aos="zoom-out-left"
+            >View all posts →</a
+          >
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <article class="p-3 project-card"data-aos="zoom-out-up">
+              <img
+                src="https://picsum.photos/seed/b1/800/420"
+                alt="post"
+                class="img-fluid"
+                style="border-radius: 8px"
+              />
+              <h5 class="mt-3">How to convert Figma into Responsive HTML</h5>
+              <p class="small" style="color: var(--muted)">
+                Step-by-step workflow to turn designs into production-ready
+                pages.
+              </p>
+              <div class="mt-2 small" style="color: var(--muted)">
+                Sep 10, 2025 · 6 min read
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="p-3 project-card" data-aos="zoom-out-right">
+              <img
+                src="https://picsum.photos/seed/b2/800/420"
+                alt="post"
+                class="img-fluid"
+                style="border-radius: 8px"
+              />
+              <h5 class="mt-3">Bootstrap Tips for Clean Layouts</h5>
+              <p class="small" style="color: var(--muted)">
+                Utilities and components that speed up your build process.
+              </p>
+              <div class="mt-2 small" style="color: var(--muted)">
+                Aug 24, 2025 · 4 min read
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="p-3 project-card"data-aos="zoom-out-left">
+              <img
+                src="https://picsum.photos/seed/b3/800/420"
+                alt="post"
+                class="img-fluid"
+                style="border-radius: 8px"
+              />
+              <h5 class="mt-3">Performance Checklist for Modern Sites</h5>
+              <p class="small" style="color: var(--muted)">
+                Small changes that make pages feel noticeably faster.
+              </p>
+              <div class="mt-2 small" style="color: var(--muted)">
+                Jul 05, 2025 · 5 min read
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS & CLIENTS -->
+    <section id="testimonials" class="py-5">
+      <div class="container">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="fw-bold" data-aos="zoom-out-down">Happy Clients</h2>
+            <p style="color: var(--muted)" data-aos="zoom-out-down">
+              Companies and founders I've worked with.
+            </p>
+            <div class="row g-3 mt-3">
+              <div class="col-6 col-md-4 text-center">
+                <img
+                  src="https://picsum.photos/seed/c1/200/80"
+                  class="client-logo img-fluid"
+                  alt="client"
+                  
+                />
+              </div>
+              <div class="col-6 col-md-4 text-center">
+                <img
+                  src="https://picsum.photos/seed/c2/200/80"
+                  class="client-logo img-fluid"
+                  alt="client"
+                />
+              </div>
+              <div class="col-6 col-md-4 text-center">
+                <img
+                  src="https://picsum.photos/seed/c3/200/80"
+                  class="client-logo img-fluid"
+                  alt="client"
+                />
+              </div>
+              <div class="col-6 col-md-4 text-center">
+                <img
+                  src="https://picsum.photos/seed/c4/200/80"
+                  class="client-logo img-fluid"
+                  alt="client"
+                />
+              </div>
+              <div class="col-6 col-md-4 text-center">
+                <img
+                  src="https://picsum.photos/seed/c5/200/80"
+                  class="client-logo img-fluid"
+                  alt="client"
+                />
+              </div>
+              <div class="col-6 col-md-4 text-center">
+                <img
+                  src="https://picsum.photos/seed/c6/200/80"
+                  class="client-logo img-fluid"
+                  alt="client"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <h5 class="mb-3"data-aos="zoom-out">Testimonials</h5>
+            <div
+              id="testimonialCarousel"
+              class="carousel slide"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="testimonial"data-aos="zoom-out">
+                    <p>
+                      “Amazing work — delivered ahead of schedule and the
+                      website looks fantastic. Highly recommended!”
+                    </p>
+                    <div class="d-flex align-items-center mt-2">
+                      <img
+                        src="https://picsum.photos/seed/t1/64/64"
+                        class="rounded-circle me-3"
+                        alt="author"
+                      />
+                      <div>
+                        <strong>Ali Khan</strong>
+                        <div class="small" style="color: var(--muted)">
+                          Founder, Startup Co.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="testimonial">
+                    <p>
+                      “Great communication and exceptional attention to detail.
+                      Our conversion rate improved.”
+                    </p>
+                    <div class="d-flex align-items-center mt-2">
+                      <img
+                        src="https://picsum.photos/seed/t2/64/64"
+                        class="rounded-circle me-3"
+                        alt="author"
+                      />
+                      <div>
+                        <strong>Sara Ahmed</strong>
+                        <div class="small" style="color: var(--muted)">
+                          Product Manager
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="testimonial">
+                    <p>
+                      “Fast, professional, and flexible. Will hire again for
+                      future projects.”
+                    </p>
+                    <div class="d-flex align-items-center mt-2">
+                      <img
+                        src="https://picsum.photos/seed/t3/64/64"
+                        class="rounded-circle me-3"
+                        alt="author"
+                      />
+                      <div>
+                        <strong>Usman R.</strong>
+                        <div class="small" style="color: var(--muted)">
+                          CTO, TechLab
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#testimonialCarousel"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#testimonialCarousel"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / LET'S DISCUSS FORM -->
+    <section
+      id="contact"
+      class="py-5 bg-dark"
+      style="border-top: 1px solid rgba(255, 255, 255, 0.02)"
+    >
+      <div class="container"data-aos="zoom-in-right" data-aos-duration="2000">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <h2 class="fw-bold"data-aos="zoom-in-right">Let's Discuss Your Project</h2>
+            <p style="color: var(--muted)">
+              Tell me about your idea — scope, timeline and budget if you have
+              one.
+            </p>
+
+            <div class="mt-4">
+              <p class="small" style="color: var(--muted)">
+                <strong>Email:</strong>
+                <a href="mailto:you@example.com" style="color: inherit"
+                  >you@example.com</a
+                >
+              </p>
+              <p class="small" style="color: var(--muted)">
+                <strong>Phone:</strong> +92 300 0000000
+              </p>
+              <p class="small" style="color: var(--muted)">
+                <strong>Availability:</strong> Mon — Fri
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <form id="contactForm" class="p-4 project-card">
+              <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" required />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Project Brief</label>
+                <textarea
+                  class="form-control"
+                  id="message"
+                  rows="5"
+                  required
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Budget (optional)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="budget"
+                  placeholder="e.g. $500 - $2,000"
+                />
+              </div>
+              <div class="d-grid">
+                <button
+                  class="btn btn-lg"
+                  style="
+                    background: linear-gradient(
+                      90deg,
+                      var(--accent1),
+                      var(--accent2)
+                    );
+                    color: white;
+                    border: none;
+                  "
+                  type="submit"
+                >
+                  Send Message
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="d-flex align-items-center gap-3">
+              <div class="brand">Your<span class="accent">Name</span></div>
+              <div class="small" style="color: var(--muted)">
+                © <span id="year"></span> All rights reserved.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 text-md-end mt-3 mt-md-0">
+            <a
+              href="#"
+              class="me-3 text-decoration-none"
+              style="color: var(--muted)"
+              >GitHub</a
+            >
+            <a
+              href="#"
+              class="me-3 text-decoration-none"
+              style="color: var(--muted)"
+              >LinkedIn</a
+            >
+            <a href="#" class="text-decoration-none" style="color: var(--muted)"
+              >Twitter</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // year
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // portfolio filter
+      document.querySelectorAll(".filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".filter-btn")
+            .forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          const f = btn.getAttribute("data-filter");
+          document.querySelectorAll(".project-item").forEach((item) => {
+            if (f === "all" || item.getAttribute("data-category") === f)
+              item.style.display = "";
+            else item.style.display = "none";
+          });
+        });
+      });
+
+      // contact form demo handler
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const name = document.getElementById("name").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const message = document.getElementById("message").value.trim();
+          if (!name || !email || !message) {
+            alert("Please fill required fields");
+            return;
+          }
+          alert(
+            "Thanks, " +
+              name +
+              "! Message received (demo). Replace this with your backend integration."
+          );
+          this.reset();
+        });
+
+      // smooth scroll for nav links
+      document.querySelectorAll(".nav-link").forEach((a) => {
+        a.addEventListener("click", function (e) {
+          const href = this.getAttribute("href");
+          if (href && href.startsWith("#")) {
+            e.preventDefault();
+            document.querySelector(href).scrollIntoView({ behavior: "smooth" });
+            document.querySelector(".navbar-collapse").classList.remove("show");
+          }
+        });
+      });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>
